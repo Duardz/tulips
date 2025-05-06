@@ -115,6 +115,11 @@
     color: #a3daff;
     font-weight: bold;
   }
+
+  .poem {
+    min-height: 300px; /* Optional: avoids layout shift while typing */
+    white-space: pre-wrap; /* Helps preserve formatting */
+  }  
   
   @keyframes blink {
     0%, 100% { opacity: 1; }
