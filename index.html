@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Riddle Landing</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+  <div class="container">
+    <h1>Solve the Riddle</h1>
+    <p>I speak without a mouth and hear without ears. I have nobody, but I come alive with the wind. What am I?</p>
+    <input type="text" id="riddle-answer" placeholder="Your answer here">
+    <button onclick="checkAnswer()">Submit</button>
+    <p id="feedback"></p>
+  </div>
+  <script src="js/main.js"></script>
 </body>
 </html>
