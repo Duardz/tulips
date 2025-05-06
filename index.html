@@ -2,26 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <title>Riddle Landing</title>
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body class="night-theme">
-  <div class="stars"></div>
-  <div class="twinkling"></div>
-  <div class="container">
-    <div class="riddle-box">
-      <h1>Solve the Riddle</h1>
-      <p class="riddle-text">I speak without a mouth and hear without ears. I have nobody, but I come alive with the wind. What am I?</p>
-      <div class="input-container">
-        <input type="text" id="riddle-answer" placeholder="Your answer here">
-        <button onclick="checkAnswer()">Submit</button>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    <div class="container">
+      <div class="riddle-box">
+        <h1>Solve the Riddle</h1>
+        <p class="riddle-text">
+          I am a wanderer cloaked in flame,<br>
+          A silent herald none can tame.<br>
+          I wake the world with golden breath,<br>
+          Yet flee each night as if in death.<br><br>
+          <em>What am I?</em>
+        </p>
+        <div class="input-container">
+          <input type="text" id="riddle-answer" placeholder="Your answer here">
+          <button onclick="checkAnswer()">Submit</button>
+        </div>
+        <p id="feedback"></p>
+        <div class="moon"></div>
       </div>
-      <p id="feedback"></p>
-      <div class="moon"></div>
     </div>
-  </div>
+    
   <script src="js/main.js"></script>
 </body>
 </html>
