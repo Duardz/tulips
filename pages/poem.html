@@ -27,5 +27,14 @@
     </div>
   </div>
   <script src="../js/poem-typing.js"></script>
+  <audio id="bg-music" src="../music/bg.mp3" autoplay loop></audio>
+  <script>
+    const bgMusic = document.getElementById('bg-music');
+    const lastTime = localStorage.getItem('bg-music-time');
+    if (lastTime) bgMusic.currentTime = parseFloat(lastTime);
+  
+    bgMusic.volume = 0.5;
+    bgMusic.play();
+  </script>
 </body>
 </html>

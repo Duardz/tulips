@@ -4,7 +4,7 @@ function checkAnswer() {
     const feedbackElement = document.getElementById('feedback');
     
     if (userInput === correctAnswer) {
-      feedbackElement.textContent = "Correct! Redirecting to your poem...";
+      feedbackElement.textContent = "Happy Anniversary!<3";
       feedbackElement.style.color = "#64a338";
       
       // Add a little animation before redirecting

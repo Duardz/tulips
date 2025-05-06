@@ -138,12 +138,13 @@
   h1 {
     font-family: 'Pacifico', cursive;
     color: #a3daff;
-    text-shadow: 0 0 5px rgba(163, 218, 255, 0.7);
+    text-shadow: 1 1 2px rgba(163, 218, 255, 0.7);
     margin-bottom: 20px;
   }
   
   input {
     padding: 12px 15px;
+    text-align: center;
     width: 80%;
     max-width: 300px;
     border: none;
@@ -313,7 +314,7 @@
   }
   
   .poem p {
-    margin-bottom: 15px;
+    margin-bottom: 5px;
   }
 
   .poem p:last-child {
@@ -401,6 +402,7 @@
     }
     
     input {
+      text-align: center;  
       padding: 10px;
       width: 90%;
     }
