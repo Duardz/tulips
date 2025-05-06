@@ -100,10 +100,25 @@
     opacity: 0.7;
   }
   
+  /* Typing animation styles */
   .riddle-text {
     font-size: 1.2rem;
     line-height: 1.6;
     margin: 20px 0;
+    min-height: 180px;
+    text-align: center;
+  }
+  
+  .cursor {
+    display: inline-block;
+    animation: blink 0.7s infinite;
+    color: #a3daff;
+    font-weight: bold;
+  }
+  
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
   }
   
   .input-container {
@@ -112,6 +127,7 @@
     align-items: center;
     gap: 15px;
     margin: 25px 0;
+    opacity: 0; /* Initially hidden */
   }
   
   h1 {
@@ -174,6 +190,9 @@
     background: linear-gradient(to bottom, #94c5f8, #a6e6ff 70%, #b1f1ff);
     color: #333;
     min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .sun-container {
@@ -261,11 +280,14 @@
   .poem-card {
     background: rgba(255, 255, 255, 0.85);
     border-radius: 15px;
-    padding: 40px;
+    padding: 30px 40px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
     max-width: 600px;
     margin: 0 auto;
+    /* max-height: 80vh; */
+    overflow-y: auto;
+    width: 100%;
   }
   
   .poem-title {
@@ -275,18 +297,22 @@
   }
   
   .poem {
-    margin-top: 30px;
+    margin-top: 20px;
     font-style: italic;
-    line-height: 1.8;
+    line-height: 1.7;
     text-align: left;
     background: rgba(255, 255, 255, 0.7);
-    padding: 25px;
+    padding: 20px;
     border-radius: 10px;
     border-left: 4px solid #6ba2ff;
   }
   
   .poem p {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+  }
+  
+  .poem p:last-child {
+    margin-bottom: 0;
   }
   
   /* Responsive styles */

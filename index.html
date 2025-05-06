@@ -8,27 +8,76 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body class="night-theme">
-    <div class="stars"></div>
-    <div class="twinkling"></div>
-    <div class="container">
-      <div class="riddle-box">
-        <h1>Solve the Riddle</h1>
-        <p class="riddle-text">
-          I am a wanderer cloaked in flame,<br>
-          A silent herald none can tame.<br>
-          I wake the world with golden breath,<br>
-          Yet flee each night as if in death.<br><br>
-          <em>What am I?</em>
-        </p>
-        <div class="input-container">
-          <input type="text" id="riddle-answer" placeholder="Your answer here">
-          <button onclick="checkAnswer()">Submit</button>
-        </div>
-        <p id="feedback"></p>
-        <div class="moon"></div>
+  <div class="stars"></div>
+  <div class="twinkling"></div>
+  <div class="container">
+    <div class="riddle-box">
+      <h1>Solve the Riddle</h1>
+      <p class="riddle-text" id="typing-riddle"></p>
+      <div class="input-container">
+        <input type="text" id="riddle-answer" placeholder="Your answer here">
+        <button onclick="checkAnswer()">Submit</button>
       </div>
+      <p id="feedback"></p>
+      <div class="moon"></div>
     </div>
-    
+  </div>
+  <script>
+    // Typing effect for riddle
+    document.addEventListener('DOMContentLoaded', function() {
+      const riddleText = [
+        "I am a wanderer cloaked in flame,",
+        "A silent herald none can tame.",
+        "I wake the world with golden breath,",
+        "Yet flee each night as if in death.",
+        "",
+        "What am I?"
+      ];
+      
+      const riddleElement = document.getElementById('typing-riddle');
+      let lineIndex = 0;
+      let charIndex = 0;
+      let isTagOpen = false;
+      let currentLine = "";
+      
+      function typeWriter() {
+        if (lineIndex < riddleText.length) {
+          if (charIndex < riddleText[lineIndex].length) {
+            riddleElement.innerHTML = currentLine + riddleText[lineIndex].substring(0, charIndex + 1) + "<span class='cursor'>|</span>";
+            charIndex++;
+            setTimeout(typeWriter, 50); // Typing speed
+          } else {
+            if (lineIndex === riddleText.length - 2) {
+              // This is the empty line before "What am I?"
+              currentLine += "<br>";
+            } else if (lineIndex === riddleText.length - 1) {
+              // This is "What am I?" - make it italic
+              currentLine += "<em>" + riddleText[lineIndex] + "</em><br>";
+            } else {
+              currentLine += riddleText[lineIndex] + "<br>";
+            }
+            charIndex = 0;
+            lineIndex++;
+            
+            // Add a slightly longer pause between lines
+            setTimeout(typeWriter, 300);
+          }
+        } else {
+          // Remove the cursor when typing is complete
+          riddleElement.innerHTML = riddleElement.innerHTML.replace("<span class='cursor'>|</span>", "");
+          // Show the input field after the riddle is typed
+          document.querySelector('.input-container').style.opacity = "1";
+        }
+      }
+      
+      // Hide input initially
+      document.querySelector('.input-container').style.opacity = "0";
+      document.querySelector('.input-container').style.transition = "opacity 1s ease";
+      
+      // Start typing effect with a small delay
+      setTimeout(typeWriter, 1000);
+    });
+  </script>
   <script src="js/main.js"></script>
 </body>
 </html>
