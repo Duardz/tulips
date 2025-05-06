@@ -306,9 +306,8 @@
     font-style: italic;
     line-height: 1.7;
     text-align: center;
-    /* background: rgba(255, 255, 255, 0.7); */
-    background-color: red;
-    padding-top: -1px;
+    background: rgba(255, 255, 255, 0.7);
+    padding-bottom: 20px;
     border-radius: 10px;
     border-left: 4px solid #6ba2ff;
   }
