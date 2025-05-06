@@ -285,7 +285,7 @@
   .poem-card {
     background: rgba(255, 255, 255, 0.85);
     border-radius: 15px;
-    padding: 30px 40px;
+    /* padding: 10px 20px; */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
     max-width: 600px;
@@ -305,7 +305,7 @@
     margin-top: 20px;
     font-style: italic;
     line-height: 1.7;
-    text-align: left;
+    text-align: center;
     background: rgba(255, 255, 255, 0.7);
     padding: 20px;
     border-radius: 10px;
@@ -315,7 +315,7 @@
   .poem p {
     margin-bottom: 15px;
   }
-  
+
   .poem p:last-child {
     margin-bottom: 0;
   }
