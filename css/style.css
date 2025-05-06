@@ -1,459 +1,682 @@
 /* Global Styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  html, body {
-    width: 100%;
-    /* height: 100%; */
-    overflow-x: hidden;
-  }
-  
-  body {
-    font-family: 'Montserrat', Arial, sans-serif;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow-x: hidden;
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Montserrat', Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.container {
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+  z-index: 10;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+/* Night Theme (Index Page) */
+.night-theme {
+  background: linear-gradient(to bottom, #000428, #004e92);
+  color: #fff;
+}
+
+.stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000428;
+  z-index: 0;
+}
+
+.stars:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 4px),
+    radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 3px),
+    radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 4px);
+  background-size: 550px 550px, 350px 350px, 250px 250px;
+  background-position: 0 0, 40px 60px, 130px 270px;
+  z-index: 1;
+}
+
+.twinkling {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 1;
+  animation: twinkle 10s linear infinite;
+}
+
+@keyframes twinkle {
+  from {background-position: 0 0;}
+  to {background-position: -10000px 5000px;}
+}
+
+.riddle-box {
+  background: rgba(0, 30, 60, 0.7);
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 0 20px rgba(0, 150, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+}
+
+.moon {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 80px;
+  height: 80px;
+  background: #e8e8e8;
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  opacity: 0.7;
+}
+
+/* Typing animation styles */
+.riddle-text {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin: 20px 0;
+  min-height: 180px;
+  text-align: center;
+}
+
+.cursor {
+  display: inline-block;
+  animation: blink 0.7s infinite;
+  color: #a3daff;
+  font-weight: bold;
+}
+
+.poem {
+  min-height: 300px;
+  white-space: pre-wrap;
+}  
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin: 25px 0;
+  opacity: 0; /* Initially hidden */
+}
+
+h1 {
+  font-family: 'Pacifico', cursive;
+  color: #a3daff;
+  text-shadow: 1 1 2px rgba(163, 218, 255, 0.7);
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 12px 15px;
+  text-align: center;
+  width: 80%;
+  max-width: 300px;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  outline: none;
+}
+
+button {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(to right, #1e3c72, #2a5298);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(to right, #2a5298, #3a6acb);
+}
+
+#feedback {
+  margin-top: 15px;
+  color: #ff6b6b;
+  font-weight: bold;
+  height: 20px;
+}
+
+/* Shake animation for incorrect answer */
+@keyframes shake {
+  0%, 100% {transform: translateX(0);}
+  20%, 60% {transform: translateX(-5px);}
+  40%, 80% {transform: translateX(5px);}
+}
+
+.shake {
+  animation: shake 0.5s;
+}
+
+/* Day Theme (Poem Page) */
+.day-theme {
+  background: linear-gradient(to bottom, #94c5f8, #a6e6ff 70%, #b1f1ff);
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sun-container {
+  position: fixed;
+  top: 50px;
+  right: 50px;
+  z-index: 1;
+}
+
+.sun {
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, #ffed22, #ff7b00);
+  border-radius: 50%;
+  box-shadow: 0 0 50px #ff7b00;
+  animation: sun-glow 4s infinite alternate;
+}
+
+@keyframes sun-glow {
+  from {box-shadow: 0 0 30px #ff7b00;}
+  to {box-shadow: 0 0 70px #ff7b00;}
+}
+
+.tulips-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 40px;
+}
+
+.tulip {
+  position: relative;
+  z-index: 2;
+}
+
+.tulip::before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 100px;
+  background: linear-gradient(to top, #64a338, #87cc51);
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 5px;
+}
+
+.tulip::after {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 60px;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50% 50% 0 0;
+}
+
+.tulip-1::after {
+  background: linear-gradient(to bottom, #ff6b6b, #cc5151);
+  animation: sway 4s ease-in-out infinite;
+}
+
+.tulip-2::after {
+  background: linear-gradient(to bottom, #e28dda, #ca55bd);
+  animation: sway 4s ease-in-out infinite 0.5s;
+}
+
+.tulip-3::after {
+  background: linear-gradient(to bottom, #6ba2ff, #5177cc);
+  animation: sway 4s ease-in-out infinite 1s;
+}
+
+@keyframes sway {
+  0%, 100% {transform: translateX(-50%) rotate(0deg);}
+  50% {transform: translateX(-50%) rotate(5deg);}
+}
+
+/* Scroll-styled poem card */
+.poem-card {
+  background: url('https://cdnjs.cloudflare.com/ajax/libs/parchment/1.0.0/parchment.jpg');
+  background-color: #f8f1e0;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(139, 69, 19, 0.5);
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  padding: 30px 40px;
+  width: 100%;
+}
+
+/* Scroll top handle */
+.poem-card:before, .poem-card:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: #8B4513;
+  opacity: 0.6;
+}
+
+.poem-card:before {
+  top: 0;
+  border-bottom: 3px solid #5e2f0d;
+  border-radius: 8px 8px 0 0;
+}
+
+.poem-card:after {
+  bottom: 0;
+  border-top: 3px solid #5e2f0d;
+  border-radius: 0 0 8px 8px;
+}
+
+.poem-title {
+  color: #8B4513;
+  text-shadow: 1px 1px 2px rgba(139, 69, 19, 0.2);
+  margin-top: 10px;
+}
+
+.poem {
+  margin-top: 20px;
+  font-style: italic;
+  line-height: 1.7;
+  text-align: center;
+  padding: 15px 20px;
+  border-radius: 10px;
+  color: #5e2f0d;
+  position: relative;
+}
+
+.poem p {
+  margin-bottom: 15px;
+  position: relative;
+  z-index: 2;
+}
+
+.poem p:last-child {
+  margin-bottom: 0;
+}
+
+/* Memories button */
+.memories-btn-container {
+  margin-top: 30px;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.memories-btn {
+  padding: 12px 30px;
+  background: linear-gradient(to right, #C86733, #D67D3E);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(139, 69, 19, 0.4);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.memories-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(139, 69, 19, 0.6);
+  background: linear-gradient(to right, #D67D3E, #E8A87C);
+}
+
+.memories-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.8);
+  overflow: auto;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.modal.show {
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  position: relative;
+  background-color: white;
+  max-width: 80%;
+  max-height: 90vh;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  animation: modalAppear 0.5s;
+}
+
+@keyframes modalAppear {
+  from {transform: scale(0.8); opacity: 0;}
+  to {transform: scale(1); opacity: 1;}
+}
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 30px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 102;
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.close-modal:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: rotate(90deg);
+}
+
+/* Slideshow styles */
+.slideshow-container {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  overflow: hidden;
+}
+
+.slideshow-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  object-fit: contain;
+  transition: opacity 1s ease-in-out;
+}
+
+.slideshow-image.active {
+  opacity: 1;
+}
+
+.slideshow-nav {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 101;
+}
+
+.slideshow-nav button {
+  background: rgba(255, 255, 255, 0.7);
+  color: #333;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.slideshow-nav button:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: scale(1.1);
+}
+
+.slideshow-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  z-index: 101;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background-color: white;
+  transform: scale(1.2);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
   .container {
-    text-align: center;
-    max-width: 600px;
-    width: 100%;
-    z-index: 10;
-    padding: 20px;
-    margin: 0 auto;
-  }
-  
-  /* Night Theme (Index Page) */
-  .night-theme {
-    background: linear-gradient(to bottom, #000428, #004e92);
-    color: #fff;
-  }
-  
-  .stars {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #000428;
-    z-index: 0;
-  }
-  
-  .stars:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-      radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 4px),
-      radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 3px),
-      radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 4px);
-    background-size: 550px 550px, 350px 350px, 250px 250px;
-    background-position: 0 0, 40px 60px, 130px 270px;
-    z-index: 1;
-  }
-  
-  .twinkling {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    z-index: 1;
-    animation: twinkle 10s linear infinite;
-  }
-  
-  @keyframes twinkle {
-    from {background-position: 0 0;}
-    to {background-position: -10000px 5000px;}
+    width: 90%;
+    padding: 15px;
   }
   
   .riddle-box {
-    background: rgba(0, 30, 60, 0.7);
-    border-radius: 15px;
-    padding: 30px;
-    box-shadow: 0 0 20px rgba(0, 150, 255, 0.3);
-    position: relative;
-    overflow: hidden;
-    backdrop-filter: blur(5px);
+    padding: 20px;
   }
   
-  .moon {
-    position: absolute;
-    top: -40px;
-    right: -40px;
-    width: 80px;
-    height: 80px;
-    background: #e8e8e8;
-    border-radius: 50%;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-    opacity: 0.7;
-  }
-  
-  /* Typing animation styles */
   .riddle-text {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    margin: 20px 0;
-    min-height: 180px;
-    text-align: center;
-  }
-  
-  .cursor {
-    display: inline-block;
-    animation: blink 0.7s infinite;
-    color: #a3daff;
-    font-weight: bold;
-  }
-
-  .poem {
-    min-height: 300px; /* Optional: avoids layout shift while typing */
-    white-space: pre-wrap; /* Helps preserve formatting */
-  }  
-  
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-  }
-  
-  .input-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    margin: 25px 0;
-    opacity: 0; /* Initially hidden */
+    font-size: 1rem;
   }
   
   h1 {
-    font-family: 'Pacifico', cursive;
-    color: #a3daff;
-    text-shadow: 1 1 2px rgba(163, 218, 255, 0.7);
-    margin-bottom: 20px;
-  }
-  
-  input {
-    padding: 12px 15px;
-    text-align: center;
-    width: 80%;
-    max-width: 300px;
-    border: none;
-    border-radius: 25px;
-    font-size: 1rem;
-    background: rgba(255, 255, 255, 0.9);
-    color: #333;
-    outline: none;
-  }
-  
-  button {
-    padding: 12px 30px;
-    border: none;
-    border-radius: 25px;
-    background: linear-gradient(to right, #1e3c72, #2a5298);
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  }
-  
-  button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-    background: linear-gradient(to right, #2a5298, #3a6acb);
-  }
-  
-  #feedback {
-    margin-top: 15px;
-    color: #ff6b6b;
-    font-weight: bold;
-    height: 20px;
-  }
-  
-  /* Shake animation for incorrect answer */
-  @keyframes shake {
-    0%, 100% {transform: translateX(0);}
-    20%, 60% {transform: translateX(-5px);}
-    40%, 80% {transform: translateX(5px);}
-  }
-  
-  .shake {
-    animation: shake 0.5s;
-  }
-  
-  /* Day Theme (Poem Page) */
-  .day-theme {
-    background: linear-gradient(to bottom, #94c5f8, #a6e6ff 70%, #b1f1ff);
-    color: #333;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-size: 1.8rem;
   }
   
   .sun-container {
-    position: fixed;
-    top: 50px;
-    right: 50px;
-    z-index: 1;
+    top: 30px;
+    right: 30px;
   }
   
   .sun {
-    width: 120px;
-    height: 120px;
-    background: radial-gradient(circle, #ffed22, #ff7b00);
-    border-radius: 50%;
-    box-shadow: 0 0 50px #ff7b00;
-    animation: sun-glow 4s infinite alternate;
-  }
-  
-  @keyframes sun-glow {
-    from {box-shadow: 0 0 30px #ff7b00;}
-    to {box-shadow: 0 0 70px #ff7b00;}
+    width: 80px;
+    height: 80px;
   }
   
   .tulips-container {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 200px;
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 40px;
-  }
-  
-  .tulip {
-    position: relative;
-    z-index: 2;
+    height: 150px;
+    gap: 25px;
   }
   
   .tulip::before {
-    content: '';
-    position: absolute;
-    width: 10px;
-    height: 100px;
-    background: linear-gradient(to top, #64a338, #87cc51);
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 5px;
+    height: 80px;
+    width: 8px;
   }
   
   .tulip::after {
-    content: '';
-    position: absolute;
-    width: 40px;
-    height: 60px;
-    bottom: 100px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 50% 50% 0 0;
-  }
-  
-  .tulip-1::after {
-    background: linear-gradient(to bottom, #ff6b6b, #cc5151);
-    animation: sway 4s ease-in-out infinite;
-  }
-  
-  .tulip-2::after {
-    background: linear-gradient(to bottom, #e28dda, #ca55bd);
-    animation: sway 4s ease-in-out infinite 0.5s;
-  }
-  
-  .tulip-3::after {
-    background: linear-gradient(to bottom, #6ba2ff, #5177cc);
-    animation: sway 4s ease-in-out infinite 1s;
-  }
-  
-  @keyframes sway {
-    0%, 100% {transform: translateX(-50%) rotate(0deg);}
-    50% {transform: translateX(-50%) rotate(5deg);}
+    width: 30px;
+    height: 45px;
+    bottom: 80px;
   }
   
   .poem-card {
-    background: rgba(255, 255, 255, 0.85);
-    border-radius: 15px;
-    /* padding: 10px 20px; */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    max-width: 600px;
-    margin: 0 auto;
-    /* max-height: 80vh; */
-    overflow-y: auto;
-    width: 100%;
-  }
-  
-  .poem-title {
-    color: #ff6666;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    margin: 20px;
   }
   
   .poem {
-    margin-top: 20px;
-    font-style: italic;
-    line-height: 1.7;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.7);
-    padding-bottom: 20px;
-    border-radius: 10px;
-    border-left: 4px solid #6ba2ff;
+    padding: 15px;
+    font-size: 0.9rem;
   }
   
-  .poem p {
-    margin-bottom: 5px;
+  .poem-title {
+    font-size: 1.6rem;
   }
+  
+  .modal-content {
+    max-width: 95%;
+  }
+  
+  .slideshow-container {
+    height: 60vh;
+  }
+}
 
-  .poem p:last-child {
-    margin-bottom: 0;
+@media (max-width: 480px) {
+  .container {
+    width: 95%;
+    padding: 10px;
   }
   
-  /* Responsive styles */
-  @media (max-width: 768px) {
-    .container {
-      width: 90%;
-      padding: 15px;
-    }
-    
-    .riddle-box {
-      padding: 20px;
-    }
-    
-    .riddle-text {
-      font-size: 1rem;
-    }
-    
-    h1 {
-      font-size: 1.8rem;
-    }
-    
-    .sun-container {
-      top: 30px;
-      right: 30px;
-    }
-    
-    .sun {
-      width: 80px;
-      height: 80px;
-    }
-    
-    .tulips-container {
-      height: 150px;
-      gap: 25px;
-    }
-    
-    .tulip::before {
-      height: 80px;
-      width: 8px;
-    }
-    
-    .tulip::after {
-      width: 30px;
-      height: 45px;
-      bottom: 80px;
-    }
-    
-    .poem-card {
-      padding: 25px;
-      margin: 20px;
-    }
-    
-    .poem {
-      padding: 15px;
-      font-size: 0.9rem;
-    }
-    
-    .poem-title {
-      font-size: 1.6rem;
-    }
+  .riddle-box {
+    padding: 15px;
   }
   
-  @media (max-width: 480px) {
-    .container {
-      width: 95%;
-      padding: 10px;
-    }
-    
-    .riddle-box {
-      padding: 15px;
-    }
-    
-    h1 {
-      font-size: 1.5rem;
-      margin-bottom: 15px;
-    }
-    
-    .riddle-text {
-      font-size: 0.9rem;
-      margin: 15px 0;
-    }
-    
-    input {
-      text-align: center;  
-      padding: 10px;
-      width: 90%;
-    }
-    
-    button {
-      padding: 10px 20px;
-    }
-    
-    .sun-container {
-      top: 15px;
-      right: 15px;
-    }
-    
-    .sun {
-      width: 60px;
-      height: 60px;
-    }
-    
-    .tulips-container {
-      height: 120px;
-      gap: 20px;
-    }
-    
-    .tulip::before {
-      height: 60px;
-      width: 6px;
-    }
-    
-    .tulip::after {
-      width: 24px;
-      height: 36px;
-      bottom: 60px;
-    }
-    
-    .poem-card {
-      padding: 20px;
-      margin: 10px;
-    }
-    
-    .poem {
-      padding: 12px;
-      font-size: 0.85rem;
-    }
-    
-    .moon {
-      width: 60px;
-      height: 60px;
-      top: -30px;
-      right: -30px;
-    }
-    
-    .poem-title {
-      font-size: 1.4rem;
-    }
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
   }
+  
+  .riddle-text {
+    font-size: 0.9rem;
+    margin: 15px 0;
+  }
+  
+  input {
+    text-align: center;  
+    padding: 10px;
+    width: 90%;
+  }
+  
+  button {
+    padding: 10px 20px;
+  }
+  
+  .sun-container {
+    top: 15px;
+    right: 15px;
+  }
+  
+  .sun {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .tulips-container {
+    height: 120px;
+    gap: 20px;
+  }
+  
+  .tulip::before {
+    height: 60px;
+    width: 6px;
+  }
+  
+  .tulip::after {
+    width: 24px;
+    height: 36px;
+    bottom: 60px;
+  }
+  
+  .poem-card {
+    padding: 20px;
+    margin: 10px;
+  }
+  
+  .poem {
+    padding: 12px;
+    font-size: 0.85rem;
+  }
+  
+  .moon {
+    width: 60px;
+    height: 60px;
+    top: -30px;
+    right: -30px;
+  }
+  
+  .poem-title {
+    font-size: 1.4rem;
+  }
+  
+  .memories-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  
+  .close-modal {
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+  }
+  
+  .slideshow-nav button {
+    width: 30px;
+    height: 30px;
+  }
+}
