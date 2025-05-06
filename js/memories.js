@@ -96,27 +96,7 @@ const memories = [
     }
   }
   
-  // Function to go to the next slide
-  function nextSlide() {
-    goToSlide(currentSlideIndex + 1);
-  }
-  
-  // Function to go to the previous slide
-  function prevSlide() {
-    goToSlide(currentSlideIndex - 1);
-  }
-  
-  // Close modal when clicking outside of it
-  document.addEventListener('click', function(event) {
-    const modal = document.getElementById('memories-modal');
-    const modalContent = document.querySelector('.modal-content');
-    
-    if (modal.classList.contains('show') && 
-        !modalContent.contains(event.target) && 
-        !event.target.classList.contains('memories-btn')) {
-      closeMemoriesModal();
-    }
-  });
+  // Function to go to specific slide
   function goToSlide(index) {
     const slides = document.querySelectorAll(".slideshow-image");
     const dots = document.querySelectorAll(".dot");
@@ -146,4 +126,68 @@ const memories = [
     startSlideshow();
   }
   
-  // Function to go
+  // Function to go to the next slide
+  function nextSlide() {
+    goToSlide(currentSlideIndex + 1);
+  }
+  
+  // Function to go to the previous slide
+  function prevSlide() {
+    goToSlide(currentSlideIndex - 1);
+  }
+  
+  // Close modal when clicking outside of it
+  document.addEventListener('click', function(event) {
+    const modal = document.getElementById('memories-modal');
+    const modalContent = document.querySelector('.modal-content');
+    
+    if (modal.classList.contains('show') && 
+        !modalContent.contains(event.target) && 
+        !event.target.classList.contains('memories-btn')) {
+      closeMemoriesModal();
+    }
+  });
+  
+  // Add keyboard navigation
+  document.addEventListener('keydown', function(event) {
+    const modal = document.getElementById('memories-modal');
+    
+    if (modal.classList.contains('show')) {
+      if (event.key === 'Escape') {
+        closeMemoriesModal();
+      } else if (event.key === 'ArrowRight') {
+        nextSlide();
+      } else if (event.key === 'ArrowLeft') {
+        prevSlide();
+      }
+    }
+  });
+  
+  // Pause slideshow when hovering over the navigation buttons
+  document.addEventListener('DOMContentLoaded', function() {
+    const slideshowNav = document.querySelector('.slideshow-nav');
+    
+    if (slideshowNav) {
+      slideshowNav.addEventListener('mouseenter', function() {
+        stopSlideshow();
+      });
+      
+      slideshowNav.addEventListener('mouseleave', function() {
+        startSlideshow();
+      });
+    }
+  });
+  
+  // Preload images for smoother transitions
+  function preloadImages(sources) {
+    sources.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+  }
+  
+  // Preload memories images when the page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    const imagesToPreload = memories.length > 0 ? memories : placeholderMemories;
+    preloadImages(imagesToPreload);
+  });
