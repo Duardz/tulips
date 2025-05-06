@@ -24,17 +24,68 @@
       <div class="poem" id="poem">
         <!-- Poem will be typed here -->
       </div>
+
+      <!-- Button to start slideshow -->
+      <button id="slideshow-btn" onclick="startSlideshow()">View Slideshow</button>
+    </div>
+
+    <!-- Slideshow Section -->
+    <div id="slideshow-container" class="slideshow-container" style="display: none;">
+      <img id="slideshow-image" class="slideshow-image" src="image1.jpg" alt="Slideshow Image">
+      <button class="slideshow-btn" id="prev-btn" onclick="prevImage()">Prev</button>
+      <button class="slideshow-btn" id="next-btn" onclick="nextImage()">Next</button>
     </div>
   </div>
+
   <script src="../js/poem-typing.js"></script>
-  <audio id="bg-music" src="../music/bg.mp3" autoplay loop></audio>
+  <audio id="bg-music" src="../music/bg.mp3" autoplay loop preload="auto"></audio>
+
   <script>
+    // Background music resume from last position
     const bgMusic = document.getElementById('bg-music');
     const lastTime = localStorage.getItem('bg-music-time');
     if (lastTime) bgMusic.currentTime = parseFloat(lastTime);
-  
     bgMusic.volume = 0.5;
     bgMusic.play();
+
+    // Save the current time of the music when the user leaves the page
+    bgMusic.addEventListener('timeupdate', function() {
+      localStorage.setItem('bg-music-time', bgMusic.currentTime);
+    });
+
+    // Slideshow functionality
+    let currentImageIndex = 0;
+    const images = [
+      'image1.jpg', // Replace with your actual image paths
+      'image2.jpg',
+      'image3.jpg',
+      'image4.jpg'
+    ];
+
+    // Function to start the slideshow
+    function startSlideshow() {
+      document.getElementById('slideshow-container').style.display = 'block'; // Show the slideshow container
+      document.getElementById('slideshow-btn').style.display = 'none'; // Hide the button
+      showImage(currentImageIndex); // Show the first image
+    }
+
+    // Function to display an image
+    function showImage(index) {
+      const imgElement = document.getElementById('slideshow-image');
+      imgElement.src = images[index];
+    }
+
+    // Function to show the next image
+    function nextImage() {
+      currentImageIndex = (currentImageIndex + 1) % images.length;
+      showImage(currentImageIndex);
+    }
+
+    // Function to show the previous image
+    function prevImage() {
+      currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+      showImage(currentImageIndex);
+    }
   </script>
 </body>
 </html>
