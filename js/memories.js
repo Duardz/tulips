@@ -1,21 +1,27 @@
 // This array will store your image paths
 // You can replace these with actual paths to your photos
 const memories = [
-    "/images/memory1.jpg",
-    "/images/memory2.jpg",
-    "/images/memory3.jpg",
-    "/images/memory4.jpg",
-    "/images/memory5.jpg"
+    "../images/m1.jpg",
+    "../images/m2.jpg",
+    "../images/m3.jpg",
+    "../images/m4.jpg",
+    "../images/m5.jpg",
+    "../images/m6.jpg",
+    "../images/m7.jpg",
+    "../images/m8.jpg",
+    "../images/m9.jpg",
+    "../images/m10.jpg",
+    "../images/m11.jpg",
   ];
   
   // If you don't have actual images yet, you can use placeholders
-  const placeholderMemories = [
-    "/api/placeholder/800/600",
-    "/api/placeholder/800/600",
-    "/api/placeholder/800/600",
-    "/api/placeholder/800/600",
-    "/api/placeholder/800/600"
-  ];
+//   const placeholderMemories = [
+//     "/api/placeholder/800/600",
+//     "/api/placeholder/800/600",
+//     "/api/placeholder/800/600",
+//     "/api/placeholder/800/600",
+//     "/api/placeholder/800/600"
+//   ];
   
   let currentSlideIndex = 0;
   let slideshowInterval;
