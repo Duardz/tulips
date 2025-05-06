@@ -39,53 +39,5 @@
 
   <script src="../js/poem-typing.js"></script>
   <audio id="bg-music" src="../music/bg.mp3" autoplay loop preload="auto"></audio>
-
-  <script>
-    // Background music resume from last position
-    const bgMusic = document.getElementById('bg-music');
-    const lastTime = localStorage.getItem('bg-music-time');
-    if (lastTime) bgMusic.currentTime = parseFloat(lastTime);
-    bgMusic.volume = 0.5;
-    bgMusic.play();
-
-    // Save the current time of the music when the user leaves the page
-    bgMusic.addEventListener('timeupdate', function() {
-      localStorage.setItem('bg-music-time', bgMusic.currentTime);
-    });
-
-    // Slideshow functionality
-    let currentImageIndex = 0;
-    const images = [
-      'image1.jpg', // Replace with your actual image paths
-      'image2.jpg',
-      'image3.jpg',
-      'image4.jpg'
-    ];
-
-    // Function to start the slideshow
-    function startSlideshow() {
-      document.getElementById('slideshow-container').style.display = 'block'; // Show the slideshow container
-      document.getElementById('slideshow-btn').style.display = 'none'; // Hide the button
-      showImage(currentImageIndex); // Show the first image
-    }
-
-    // Function to display an image
-    function showImage(index) {
-      const imgElement = document.getElementById('slideshow-image');
-      imgElement.src = images[index];
-    }
-
-    // Function to show the next image
-    function nextImage() {
-      currentImageIndex = (currentImageIndex + 1) % images.length;
-      showImage(currentImageIndex);
-    }
-
-    // Function to show the previous image
-    function prevImage() {
-      currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-      showImage(currentImageIndex);
-    }
-  </script>
 </body>
 </html>
