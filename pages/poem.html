@@ -63,11 +63,25 @@
       </div>
     </div>
   </div>
+
   <!-- Background music -->
-  <audio id="bg-music" src="../music/bg.mp3" autoplay loop preload="auto"></audio>
+  <audio id="bg-music" src="../music/bg.mp3" preload="auto" muted></audio> <!-- Start muted -->
 
   <!-- Scripts -->
   <script src="../js/poem-typing.js"></script>
   <script src="../js/memories.js"></script>
+  
+  <script>
+    // Play audio on user interaction (e.g., click or touch)
+    document.addEventListener('click', function() {
+      const audio = document.getElementById('bg-music');
+      if (audio.paused) {
+        audio.muted = false; // Unmute after user interaction
+        audio.play().catch((error) => {
+          console.error('Autoplay failed:', error);
+        });
+      }
+    });
+  </script>
 </body>
 </html>
