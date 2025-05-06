@@ -1,5 +1,5 @@
 // Dynamically generate memory image paths
-const memories = Array.from({ length: 11 }, (_, i) => `../images/m${i + 1}.jpg`);
+const memories = Array.from({ length: 25 }, (_, i) => `../images/m${i + 1}.jpg`);
 
 let currentSlideIndex = 0;
 let slideshowInterval;
